@@ -1,10 +1,10 @@
-import json
 from pathlib import Path
 from typing import Any, List, Union
 
 from pydantic import BaseModel, validator
+from yaml import safe_load
 
-from src.utils.validation_helpers import is_evaluable
+from src.utils.validation_helpers import is_evaluable, ALLOWED_NAMES
 
 
 class FractalTransformation(BaseModel):
@@ -33,7 +33,8 @@ class FractalTransformation(BaseModel):
         Returns:
             The result of applying the fractal transformation to the input.
         """
-        return eval(self.transformation, kwargs)
+        ALLOWED_NAMES.update(kwargs)
+        return eval(self.transformation, {"__builtins__": {}}, ALLOWED_NAMES)
 
     @validator("probability")
     def validate_probability(cls, v):
@@ -73,5 +74,5 @@ class FractalTransformation(BaseModel):
         Load a list of FractalTransformation objects from a JSON file.
         """
         with open(file_path, "r") as f:
-            data = json.load(f)
+            data = safe_load(f)
         return [FractalTransformation.parse_obj(obj) for obj in data]
