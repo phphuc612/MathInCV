@@ -1,0 +1,8 @@
+- probability: 1
+  transformation: ".5*x, .5*y"
+
+- probability: 1
+  transformation: ".5*x + .5, .5*y + .5"
+
+- probability: 1
+  transformation: ".5*x + 1, .5*y"

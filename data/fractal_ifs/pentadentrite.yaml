@@ -1,0 +1,17 @@
+- probability: .167
+  transformation: ".342*x - .071*y, .071*x + .341*y"
+
+- probability: .167
+  transformation: ".038*x - .346*y + .341, .346*x + .038*y + .071"
+
+- probability: .166
+  transformation: ".341*x - .071*y + .379, .071*x + .341*y + .418"
+
+- probability: .167
+  transformation: "-.234*x + .258*y + .72, -.258*x - .234*y + .489"
+
+- probability: .167
+  transformation: ".173*x + .302*y + .486, -.302*x + .173*y + .231"
+
+- probability: .166
+  transformation: ".341*x - .071*y + .659, .071*x + .341*y - .071"

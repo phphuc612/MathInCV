@@ -1,0 +1,11 @@
+- probability: 1
+  transformation: "0, .16*y"
+
+- probability: 7
+  transformation: ".2*x -.26*y, .23*x + .22*y + 1.6"
+
+- probability: 7
+  transformation: "-.15*x + .28*y, .26*x + .24*y + .44"
+
+- probability: 85
+  transformation: ".85*x + .04*y, -.04*x + .85*y + 1.6"

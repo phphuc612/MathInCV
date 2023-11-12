@@ -1,0 +1,5 @@
+- probability: .073
+  transformation: ".25*x, .25*y + .5"
+
+- probability: .927
+  transformation: ".823*x - .475*y + .301, .475*x + .823*y - .172"
