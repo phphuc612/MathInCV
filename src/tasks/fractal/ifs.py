@@ -11,15 +11,20 @@ from src.schemas.fractal_transformation import FractalTransformation
 
 
 def generate_points(
-    transformations: List[FractalTransformation], img_w, img_h, n_points=100000
+    transformations: List[FractalTransformation], initial_point: Tuple[float] = (0, 0), n_points=100000
 ) -> List[Tuple]:
     n_transformation = len(transformations)
     probs = FractalTransformation.get_probs(transformations)
     choices = random.choice(n_transformation, n_points, replace=True, p=probs)
 
-    point = ()
+    point = initial_point
+    points: List[Tuple] = [point]
 
-    return choices
+    for choice in choices:
+        point = transformations[choice].transform(x = point[0], y = point[1])
+        points.append(point)
+    
+    return points
 
 
 # def process_file(transformations, width, height, iterations=1, outputfile="out.png"):
