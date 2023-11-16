@@ -4,7 +4,7 @@ from typing import Any, List, Union
 from pydantic import BaseModel, validator
 from yaml import safe_load
 
-from src.utils.validation_helpers import is_evaluable, ALLOWED_NAMES
+from src.utils.validation_helpers import ALLOWED_NAMES, is_evaluable
 
 
 class FractalTransformation(BaseModel):
@@ -36,13 +36,13 @@ class FractalTransformation(BaseModel):
         ALLOWED_NAMES.update(kwargs)
         return eval(self.transformation, {"__builtins__": {}}, ALLOWED_NAMES)
 
-    @validator("probability")
+    @validator("probability", allow_reuse=True)
     def validate_probability(cls, v):
         if v <= 0:
             raise ValueError(f"Probability must be positive. Received {v}")
         return v
 
-    @validator("transformation")
+    @validator("transformation", allow_reuse=True)
     def validate_transformation(cls, v):
         if v == "":
             raise ValueError("Transformation cannot be empty.")
